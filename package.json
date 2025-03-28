@@ -3,17 +3,27 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx hardhat test",
+    "test:coverage": "npx hardhat coverage"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "devDependencies": {
-    "@nomicfoundation/hardhat-chai-matchers": "^2.0.8",
+    "@nomicfoundation/hardhat-ethers": "^3.0.8",
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
-    "chai": "^5.2.0",
+    "@openzeppelin/contracts": "^4.9.3",
+    "dotenv": "^16.4.7",
     "ethers": "^6.13.5",
     "hardhat": "^2.22.19"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flexykrn/Coherence-25_Q-bits_Blockchain.git"
+  },
+  "bugs": {
+    "url": "https://github.com/flexykrn/Coherence-25_Q-bits_Blockchain/issues"
+  },
+  "homepage": "https://github.com/flexykrn/Coherence-25_Q-bits_Blockchain#readme",
+  "description": ""
 }
