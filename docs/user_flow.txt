@@ -1,0 +1,107 @@
+Identity Management System - User Flow Documentation
+=================================================
+
+1. System Roles
+--------------
+- Admin: System administrator with full control
+- User: Individual users who can register and manage their DIDs
+- Verifier: Entities authorized to verify documents
+- Service Provider: Organizations that can grant/revoke access to verified identities
+
+2. User Registration Flow
+-------------------------
+a) Initial Setup:
+   - User connects their wallet
+   - System checks if user has USER_ROLE
+   - If not, admin must grant USER_ROLE to the user's address
+
+b) DID Registration:
+   - User calls registerDID() with their unique identifier
+   - System creates a new DID record
+   - DID is associated with user's wallet address
+   - Event DIDRegistered is emitted
+
+3. Document Management Flow
+--------------------------
+a) Document Upload:
+   - User uploads document to IPFS
+   - Document hash is generated
+   - User calls uploadDocument() with document hash
+   - System associates document with user's DID
+   - Event DocumentUploaded is emitted
+
+b) Document Verification:
+   - User selects a verifier
+   - User calls requestVerification() with verifier address and document hash
+   - System creates verification request
+   - Event VerificationRequested is emitted
+   - Verifier reviews document
+   - Verifier calls verifyDocument() to approve
+   - Event DocumentVerified is emitted
+   - Or verifier calls rejectVerification() to reject
+   - Event VerificationRejected is emitted
+
+4. Service Provider Access Flow
+-----------------------------
+a) Access Request:
+   - Service Provider checks user's verification status
+   - Service Provider calls checkAccess() to verify user
+   - If verified, Service Provider calls grantAccess()
+   - Event AccessGranted is emitted
+
+b) Access Revocation:
+   - Service Provider can revoke access when needed
+   - Event AccessRevoked is emitted
+
+5. System Configuration
+----------------------
+- Admin can update system parameters:
+  * Verification fee
+  * Document expiry time
+  * Maximum verification attempts
+  * Multiple DID allowance
+- Changes are tracked via SystemConfigUpdated event
+
+6. Security Features
+-------------------
+- Role-based access control
+- Pausable functionality for emergency stops
+- Reentrancy protection
+- Document uniqueness checks
+- Verification attempt limits
+- Document expiry management
+
+7. Events and Notifications
+--------------------------
+System emits events for all major actions:
+- DID registration
+- Document uploads
+- Verification requests
+- Document verification/rejection
+- Access grants/revocations
+- System configuration changes
+
+8. Error Handling
+----------------
+System includes checks for:
+- Invalid roles
+- Duplicate documents
+- Expired documents
+- Maximum verification attempts
+- Unauthorized access
+- Invalid verifiers
+- Missing DIDs
+
+9. Contract Addresses
+--------------------
+BaseIdentity: 0x36Ae38FC3772594d398EA9e79627d703aE5E0076
+IPFSDocumentManager: 0xfDf99741700039d17dFfBa12b74d4bdc54B3cB66
+IdentityRegistry: 0xB9461968ca2261f369668FcF0e0421906CB47EB3
+
+10. Network Information
+---------------------
+- Network: Holesky Testnet
+- RPC URL: https://ethereum-holesky.publicnode.com
+- Verified on Etherscan and Sourcify
+
+Note: This system is designed to be secure, scalable, and user-friendly while maintaining the privacy and control of user identities. 

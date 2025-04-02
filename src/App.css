@@ -1,0 +1,50 @@
+/* App-specific styles */
+.app {
+  text-align: center;
+}
+
+/* Add smooth scrolling to the whole page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ensure proper backdrop-filter support */
+@supports (backdrop-filter: none) {
+  .nav-blur {
+    backdrop-filter: blur(10px);
+  }
+}
+
+@supports not (backdrop-filter: none) {
+  .nav-blur {
+    background-color: rgba(26, 26, 46, 0.95);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+} 
